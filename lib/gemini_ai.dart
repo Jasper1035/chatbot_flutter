@@ -92,7 +92,7 @@ class _GeminiAiState extends State<GeminiAi> {
         centerTitle: true,
         elevation: 3,
         backgroundColor: Colors.blue[300],
-        title: Text('AI ChatBot'),
+        title: const Text('AI ChatBot'),
       ),
       body: Column(
         children: [
@@ -110,14 +110,14 @@ class _GeminiAiState extends State<GeminiAi> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Row(
               children: [
                 Expanded(
                   flex: 20,
                   child: TextField(
                     controller: promptController,
-                    style: TextStyle(color: Colors.black, fontSize: 20),
+                    style: const TextStyle(color: Colors.black, fontSize: 20),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -127,12 +127,12 @@ class _GeminiAiState extends State<GeminiAi> {
                   ),
                 ),
                 // SizedBox(width: 20),
-                Spacer(),
+                const Spacer(),
                 GestureDetector(
                   onTap: () async {
                     await sendMessage();
                   },
-                  child: CircleAvatar(
+                  child: const CircleAvatar(
                     radius: 30,
                     backgroundColor: Colors.green,
                     child: Icon(Icons.send, color: Colors.white, size: 35),
@@ -153,10 +153,18 @@ class _GeminiAiState extends State<GeminiAi> {
   }) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
+      margin: const EdgeInsets.symmetric(
+        vertical: 15,
+      ).copyWith(left: isPrompt ? 80 : 15, right: isPrompt ? 15 : 80),
       decoration: BoxDecoration(
         color: isPrompt ? Colors.green : Colors.grey,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.only(
+          topLeft: const Radius.circular(20),
+          topRight: const Radius.circular(20),
+          bottomLeft: isPrompt ? const Radius.circular(20) : Radius.zero,
+          bottomRight: isPrompt ? Radius.zero : const Radius.circular(20),
+        ),
       ),
       child: Column(
         children: [
